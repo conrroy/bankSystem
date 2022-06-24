@@ -9,5 +9,4 @@ class Account {
         id:'identity'
     }
     static belongsTo = [customer:Customer]
-    static hasMany = [bandCards: BankCard]
 }
