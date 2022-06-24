@@ -4,5 +4,10 @@ class Customer {
     String name
     String address
     String emailAddress
-    Integer id
+    static hasMany = [accounts: Account]
+    static hasOne = [loan: Loan, mortage: Mortgage]
+    static mapping = {
+        version(false)
+        id:'identity'
+    }
 }

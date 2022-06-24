@@ -1,8 +1,16 @@
 package com.ypzhang
 
 class Mortgage {
-    Integer customerId
     Integer mortgageType
     Boolean monthlyPayment
-    Double totalAmount
+    Float totalAmount
+
+    static belongsTo = [customer: Customer]
+    static mapping = {
+        version(false)
+        id:'identity'
+    }
+    static constraints = {
+        customer (unique: true)
+    }
 }
