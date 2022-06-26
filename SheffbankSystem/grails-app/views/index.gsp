@@ -1,79 +1,116 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QWERTY Back System</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    html {
+        height: 100%;
+    }
+    body {
+        height: 100%;
+    }
+    .container {
+        height: 100%;
+        background-image: url("assets/bg.png");
+    }
+    .login-wrapper {
+        background-color: #fff;
+        width: 358px;
+        height: 588px;
+        border-radius: 15px;
+        padding: 0 50px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .header {
+        font-size: 14px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 200px;
+    }
+    .input-item {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        border: 0;
+        padding: 10px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 15px;
+        outline: none;
+    }
+    .input-item:placeholder {
+        text-transform: uppercase;
+    }
+    .btn {
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        margin-top: 40px;
+        background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+        color: #fff;
+    }
+    .msg {
+        text-align: center;
+        line-height: 88px;
+    }
+    a {
+        text-decoration-line: none;
+        color: #abc1ee;
+    }
+    </style>
 </head>
 <body>
-<content tag="nav">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-            <li class="dropdown-item"><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-            <li class="dropdown-item"><a href="#">App version:
-                <g:meta name="info.app.version"/></a>
-            </li>
-            <li role="separator" class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="#">Grails version:
-                <g:meta name="info.app.grailsVersion"/></a>
-            </li>
-            <li class="dropdown-item"><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-            <li class="dropdown-item"><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-            <li role="separator" class="dropdown-divider"></li>
-            <li class="dropdown-item"><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li class="dropdown-item"><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-            <li class="dropdown-item"><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>
-        <ul class="dropdown-menu dropdown-menu-right">
-            <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                <li class="dropdown-item"><a href="#">${plugin.name} - ${plugin.version}</a></li>
-            </g:each>
-        </ul>
-    </li>
-</content>
-
-<div class="svg" role="presentation">
-    <div class="grails-logo-container">
-        <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
+<div class="container">
+    <div class="login-wrapper">
+        <div class="header">Welcome to QWERTY Banking Corporation</div>
+        <div class="form-wrapper">
+            <input type="text" id="username" name="username" placeholder="your emails address" class="input-item">
+            <input type="password" id="password" name="password" placeholder="password" class="input-item">
+            <div class="btn" id="signIn">signIn</div>
+        </div>
+        <div class="msg">
+            Don't have account?
+            <a href="login">Pls contact QWERTY!</a>
+        </div>
     </div>
 </div>
-
-<div id="content" role="main">
-    <div class="container">
-        <section class="row colset-2-its">
-            <h1>Welcome to Grails</h1>
-
-            <p>
-                Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
-                whatever content you may choose. Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
-            </p>
-
-            <div id="controllers" role="navigation">
-                <h2>Available Controllers:</h2>
-                <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller">
-                            <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                        </li>
-                    </g:each>
-                </ul>
-            </div>
-        </section>
-    </div>
-</div>
-
 </body>
+<script>
+    $(function () {
+        $('#signIn').click(function () {
+            const username = $('#username').val()
+            const password = $('#password').val()
+            $.get('login/signIn', {username, password}, (res) => {
+                console.log(res)
+                window.location.href = '/home'
+            })
+        })
+    })
+    function signIn() {
+        const httpRequest = new XMLHttpRequest();
+        httpRequest.open('GET', 'login/signIn?name=jack&password=123456', true);
+        httpRequest.send();
+        httpRequest.onreadystatechange = function () {
+            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                const json = httpRequest.responseText;
+                console.log(json);
+            }
+
+            if (httpRequest.readyState == 2 && httpRequest.status == 200) {
+                window.location = httpRequest.getResponseHeader('Location')
+            }
+        };
+
+    }
+</script>
 </html>
