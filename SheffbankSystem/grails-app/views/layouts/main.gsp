@@ -33,7 +33,7 @@
 
 <g:layoutBody/>
 
-<div class="footer" role="contentinfo">
+<!--div class="footer" role="contentinfo">
     <div class="container-fluid">
         <div class="row">
             <div class="col">
@@ -61,7 +61,7 @@
             </div>
         </div>
     </div>
-</div>
+</div-->
 
 <div id="spinner" class="spinner" style="display:none;">
     <g:message code="spinner.alt" default="Loading&hellip;"/>

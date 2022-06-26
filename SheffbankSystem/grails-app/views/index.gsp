@@ -90,27 +90,13 @@
         $('#signIn').click(function () {
             const username = $('#username').val()
             const password = $('#password').val()
-            $.get('login/signIn', {username, password}, (res) => {
-                console.log(res)
-                window.location.href = '/home'
+            $.get('login/signIn', {username, password}, (data, status) => {
+                if (data.role == 1) {
+                    window.location.href = '/admin'
+                } else {
+                    window.location.href = '/customerHome/index/' + data.id;                }
             })
         })
     })
-    function signIn() {
-        const httpRequest = new XMLHttpRequest();
-        httpRequest.open('GET', 'login/signIn?name=jack&password=123456', true);
-        httpRequest.send();
-        httpRequest.onreadystatechange = function () {
-            if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-                const json = httpRequest.responseText;
-                console.log(json);
-            }
-
-            if (httpRequest.readyState == 2 && httpRequest.status == 200) {
-                window.location = httpRequest.getResponseHeader('Location')
-            }
-        };
-
-    }
 </script>
 </html>

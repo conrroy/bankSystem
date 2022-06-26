@@ -34,7 +34,7 @@
         </ul>
     </li-->
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> log out <span class="caret"></span></a>
+        <button > log out </button>
         <!--ul class="dropdown-menu dropdown-menu-right">
             <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
                 <li class="dropdown-item"><a href="#">${plugin.name} - ${plugin.version}</a></li>
@@ -53,21 +53,24 @@
     <div class="container">
         <section class="row colset-2-its">
             <h1>Welcome to QWERTY Banking</h1>
-                <p>
-                Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
-                whatever content you may choose. Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
+            <p>
             </p>
 
             <div id="controllers" role="navigation">
-                <h2>Available Controllers:</h2>
+                <h2>System manage:</h2>
                 <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller">
-                            <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                        </li>
-                    </g:each>
+                    <li class="controller">
+                        <g:link controller="account" action="index">account manage</g:link>
+                    </li>
+                    <li class="controller">
+                        <g:link controller="customer" action="index">customer manage</g:link>
+                    </li>
+                    <li class="controller">
+                        <g:link controller="loan" action="index">loan manage</g:link>
+                    </li>
+                    <li class="controller">
+                        <g:link controller="mortgage" action="index">mortgage manage</g:link>
+                    </li>
                 </ul>
             </div>
         </section>
